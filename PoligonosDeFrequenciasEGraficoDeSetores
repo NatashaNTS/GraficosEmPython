@@ -1,0 +1,42 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from tabulate import tabulate
+
+# Dados de exemplo
+categorias = ['Masculino', 'Feminino']
+frequencias = [40, 60]
+
+# Construir tabela de frequência
+frequency_table = pd.DataFrame({'Gênero': categorias, 'Frequência': frequencias})
+frequency_table['Fi'] = frequency_table['Frequência']/frequency_table['Frequência'].sum()*100
+frequency_table = frequency_table[['Gênero', 'Frequência', 'Fi']]
+
+# Exibir tabela de frequência
+print(tabulate(frequency_table, headers='firstrow', tablefmt='fancy_grid'))
+
+# Criar subplots separados para cada gráfico
+fig, axs = plt.subplots(2, 2, figsize=(10, 10))
+
+# Criar gráfico de frequência (fi)
+axs[0, 0].bar(frequency_table['Gênero'], frequency_table['Frequência'])
+axs[0, 0].set_xlabel('Gênero')
+axs[0, 0].set_ylabel('Frequência')
+axs[0, 0].set_title('Gráfico de Frequência Simples (fi)')
+
+# Adicionar texto com frequências acima das barras
+for i, freq in enumerate(frequencias):
+    axs[0, 0].text(i, freq + 1, str(freq), ha='center', va='bottom')
+
+# Criar gráfico de frequência acumulada (Fi)
+frequency_table['Frequência Acumulada'] = frequency_table['Frequência'].cumsum()
+axs[0, 1].plot(frequency_table['Gênero'], frequency_table['Frequência Acumulada'], marker='o')
+axs[0, 1].set_xlabel('Gênero')
+axs[0, 1].set_ylabel('Frequência Acumulada')
+axs[0, 1].set_title('Gráfico de Frequência Acumulada (Fi)')
+
+# Criar gráfico de setores
+axs[1, 0].pie(frequency_table['Frequência'], labels=frequency_table['Gênero'], autopct='%1.1f%%')
+axs[1, 0].set_title('Gráfico de Setores')
+
+# Exibir gráficos
+plt.show()
