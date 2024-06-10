@@ -1,0 +1,30 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Dados de população
+anos = [2010, 2011, 2012, 2013, 2014, 2015]
+populacao_homens = [5000, 5200, 5400, 5600, 5800, 6000]
+populacao_mulheres = [5000, 5300, 5500, 5700, 5900, 6100]
+populacao_idosos = [1000, 1100, 1200, 1300, 1400, 1500]
+populacao_jovens = [2000, 2200, 2400, 2600, 2800, 3000]
+
+# Criar figura e eixo
+fig, ax = plt.subplots()
+
+# Plotar dados
+bar_width = 0.2
+ax.bar(np.arange(len(anos)) - bar_width, populacao_homens, bar_width, label='Homens')
+ax.bar(np.arange(len(anos)), populacao_mulheres, bar_width, label='Mulheres')
+ax.bar(np.arange(len(anos)) + bar_width, populacao_idosos, bar_width, label='Idosos')
+ax.bar(np.arange(len(anos)) + 2*bar_width, populacao_jovens, bar_width, label='Jovens')
+
+# Adicionar título e rótulos
+ax.set_title('População ao longo dos anos')
+ax.set_xlabel('Ano')
+ax.set_ylabel('População')
+
+# Adicionar legenda
+ax.legend()
+
+# Mostrar gráfico
+plt.show()
