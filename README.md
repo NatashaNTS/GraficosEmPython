@@ -1,0 +1,1 @@
+Códigos desenvolvidos para aprofundar os estudos em estatística utilizando programação. A linguagem usada foi Python 3.12.4, caso for testar estes códigos não esqueça de ter instalado a versão indicada da linguagem.
